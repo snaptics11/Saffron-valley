@@ -21,16 +21,16 @@ const Why = () => {
 
             {/* Text Column */}
             <Col xs={12} md={6}>
-              <h2 className="fw-bold mb-4">WHY IN URBANRISE GALLERIA GARDENS?</h2>
+              <h2 className="fw-bold mb-4">WHY SAFFRON VALLEY?</h2>
               <ul className="list-unstyled">
                 {[
-                  'Potential Opportunity',
-                  'Safe, Secure, & Trustworthy',
-                  'Multiple Infrastructural Developments In & Around Shadnagar',
-                  'Convenient Access & Seamless Connectivity',
-                  'Strategic Location: Hyderabad-Bangalore Highway',
-                  'Growth & Expansion Plans Proposed',
-                  'Proximity to Various Facilities',
+                  'A Premium Luxury Villa Community',
+                  'Safe, Secure & Fully Gated with 24/7 Digital Security',
+                  'Located in Fast-Growing Masaipet @ Toopran',
+                  'Excellent Connectivity: 1 km from Haldi Reservoir & 2 km from NH44',
+                  'Serene Waterfront Living with Landscaped Parks',
+                  '30+ World-Class Lifestyle Amenities',
+                  '3 Villa Types: Kerala-inspired Ground Floor Farm Villas & European-inspired Duplex Villas (East & West)',
                 ].map((item, index) => (
                   <li key={index} className="mb-3 d-flex align-items-start">
                     <FaCheckCircle style={{ color: '#059448', marginRight: '10px', marginTop: '4px' }} />

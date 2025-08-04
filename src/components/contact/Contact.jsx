@@ -41,7 +41,7 @@ const Contact = () => {
             <div>
                 <Row className="bg-success text-white text-center py-md-5 py-3">
                     <Col>
-                        <h2>Get in Touch, Let's Turn Your Investment into Reality!</h2>
+                        <h2>Your Dream Villa at Saffron Valley is Just One Call Away!</h2>
                         <Button variant="light" className="mt-md-3 mt-2" onClick={handleContactUsClick}>
                             CONTACT US
                         </Button>
@@ -109,7 +109,7 @@ const Contact = () => {
                     <Modal.Title>Contact Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p><strong>Email:</strong> info@myelegantgroup.com</p>
+                    <p><strong>Email:</strong>  rvinfradevelopers2018@gmail.com</p>
                     <p><strong>Phone:</strong> +1 123 456 7890</p>
                     <p><strong>Address:</strong> My Home Hub, 7th Floor, Block 2, Madhapur, Hitechcity, Hyderabad, India</p>
                     <p><strong>Website:</strong><a href='https://myelegantgroup.com/index.html' target="_blank" rel="noopener noreferrer">My Elegant Group</a></p>

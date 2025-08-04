@@ -18,7 +18,7 @@ import WatertankIcon from "../../assets/amenities16.jpg";
 
 const Amenities = () => {
     const amenitiesData = [
-        { icon: amphitheatreIcon, title: 'AMPHITHEATRE' },
+        { icon: amphitheatreIcon, title: 'Tower Top Restaurant' },
         { icon: boxCricketIcon, title: 'BOX CRICKET' },
         { icon: basketBallIcon, title: 'BASKET BALL' },
         { icon: boxFootBallIcon, title: 'BOX FOOT BALL' },

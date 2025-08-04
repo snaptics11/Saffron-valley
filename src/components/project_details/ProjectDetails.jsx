@@ -25,10 +25,10 @@ const ProjectDetails = () => {
     handleClose();
   };
 
-  const plotData = [
-    { size: '165 – 200 Sq.Yd' },
-    { size: '200 – 300 Sq.Yds' },
-    { size: '300 – 400 Sq.Yds' },
+  const villaData = [
+    { title: 'G + 1 Villa (East)', details: '605 Sq. yds., 2035 s.ft' },
+    { title: 'G + 1 Villa (West)', details: '605 Sq. yds., 1950 s.ft' },
+    { title: 'Ground Floor Farm Villa (East & West)', details: '605 Sq. yds., 900 s.ft' },
   ];
 
   return (
@@ -36,12 +36,13 @@ const ProjectDetails = () => {
       <Container className="text-center">
         <h2 className="text-white mb-4">The Future is Here</h2>
         <Row className="justify-content-center">
-          {plotData.map((plot, index) => (
+          {villaData.map((villa, index) => (
             <Col key={index} lg={3} md={4} sm={6} xs={12} className="mb-4">
               <Card className="glass-card text-white h-100">
                 <Card.Body>
                   <FaMapMarkerAlt size={30} className="mb-2" />
-                  <Card.Title>{plot.size}</Card.Title>
+                  <Card.Title>{villa.title}</Card.Title>
+                  <Card.Text>{villa.details}</Card.Text>
                   <Button variant="success" className="mt-2" onClick={handleShow}>
                     Unlock Price
                   </Button>
@@ -50,7 +51,7 @@ const ProjectDetails = () => {
             </Col>
           ))}
         </Row>
-      </Container>  
+      </Container>
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -103,9 +104,9 @@ const ProjectDetails = () => {
                 required
               >
                 <option value="">Select Range</option>
-                <option value="range1">165 - 200 Sq. Yds</option>
-                <option value="range2">200 - 300 Sq. Yds</option>
-                <option value="range3">300 - 400 Sq. Yds</option>
+                <option value="G + 1 Villa (East) – 2035 s.ft">G + 1 Villa (East) – 2035 s.ft</option>
+                <option value="G + 1 Villa (West) – 1950 s.ft">G + 1 Villa (West) – 1950 s.ft</option>
+                <option value="Ground Floor Farm Villa – 900 s.ft">Ground Floor Farm Villa – 900 s.ft</option>
               </Form.Select>
             </Form.Group>
 

@@ -2,8 +2,8 @@ import React from 'react';
 import villaPlotImage from '../../assets/gallery4.jpg';
 import treeIcon from '../../assets/tree-icon.png';
 import locationIcon from '../../assets/location-icon.png';
-import builderIcon from '../../assets/builder-icon.png'; 
-import landIcon from '../../assets/land-icon.png'; 
+import builderIcon from '../../assets/builder-icon.png';
+import landIcon from '../../assets/land-icon.png';
 import plotIcon from '../../assets/plot-icon.png';
 import areaIcon from '../../assets/area-icon.png';
 import amenitiesIcon from '../../assets/amenities-icon.png';
@@ -16,37 +16,33 @@ function About() {
         <div className="row align-items-center gy-4">
           {/* Text Content */}
           <div className="col-12 col-md-6">
-            <h1 className="fw-bold text-dark text-uppercase">Villa Plots that bring you pride and fulfillment</h1>
+            <h1 className="fw-bold text-dark text-uppercase">Villas That Define Luxury and Serenity</h1>
             <p className="mt-4">
-              Luxury Villa Plots for Sale in Shadnagar - Nestled in the
-              embrace of nature, Urbanrise Galleria Gardens is a luxurious
-              villa plots for sale near Hyderabad; perfectly situated in a
-              strategic location. Here, within this idyllic landscape, envision
-              crafting your dream villa plot, a sanctuary that embodies
-              both peace and security. Come, explore this open plots sale
-              in Shadnagar, Hyderabad.
+              Saffron Valley offers ready luxury villas in a premium gated community at Masaipet, Toopran.
+              Surrounded by lush greenery and waterbodies, it is designed for those who seek peace, privacy,
+              and world-class amenities just minutes from the city.
             </p>
             <ul className="list-unstyled mt-4">
               <li className="d-flex align-items-center mb-3">
                 <img src={treeIcon} alt="Lifestyle Opportunity" className="me-3" style={{ width: '40px', height: '40px' }} />
-                <span>A Lifestyle Opportunity</span>
+                <span>A Lifestyle Beyond Ordinary</span>
               </li>
               <li className="d-flex align-items-center mb-3">
-                <img src={locationIcon} alt="Well Developed Location" className="me-3" style={{ width: '40px', height: '40px' }} />
-                <span>A Well Developed Location</span>
+                <img src={locationIcon} alt="Well Connected Location" className="me-3" style={{ width: '40px', height: '40px' }} />
+                <span>A Well-Connected Location</span>
               </li>
               <li className="d-flex align-items-center mb-3">
-                <img src={builderIcon} alt="Real Estate Developer" className="me-3" style={{ width: '40px', height: '40px' }} />
-                <span>From South India's Largest Real Estate Developer</span>
+                <img src={builderIcon} alt="Trusted Developer" className="me-3" style={{ width: '40px', height: '40px' }} />
+                <span>From a Trusted Real Estate Developer</span>
               </li>
             </ul>
           </div>
 
-          
+          {/* Image */}
           <div className="col-12 col-md-6 text-center">
             <img
               src={villaPlotImage}
-              alt="Villa Plot Aerial View"
+              alt="Saffron Valley View"
               className="img-fluid rounded shadow"
               style={{ maxHeight: '400px', objectFit: 'cover', width: '100%' }}
             />
@@ -58,29 +54,29 @@ function About() {
           <div className="col-6 col-sm-6 col-md-3">
             <div className="p-3 border border-2 border-dark rounded-2 h-100">
               <img src={landIcon} alt="Acres" style={{ width: '40px', height: '40px' }} className="mb-2" />
-              <div className="h4">34</div>
+              <div className="h4">18</div>
               <small className="text-muted">Acres</small>
             </div>
           </div>
           <div className="col-6 col-sm-6 col-md-3">
             <div className="p-3 border border-2 border-dark rounded-2 h-100">
-              <img src={plotIcon} alt="Plots" style={{ width: '40px', height: '40px' }} className="mb-2" />
-              <div className="h4">322</div>
-              <small className="text-muted">Plots</small>
+              <img src={plotIcon} alt="Villas" style={{ width: '40px', height: '40px' }} className="mb-2" />
+              <div className="h4">76</div>
+              <small className="text-muted">Villas</small>
             </div>
           </div>
           <div className="col-6 col-sm-6 col-md-3">
             <div className="p-3 border border-2 border-dark rounded-2 h-100">
               <img src={areaIcon} alt="Sq. yds" style={{ width: '40px', height: '40px' }} className="mb-2" />
-              <div className="h4">165–400</div>
-              <small className="text-muted">Sq. yds</small>
+              <div className="h4">605</div>
+              <small className="text-muted">Sq. yds. Each</small>
             </div>
           </div>
           <div className="col-6 col-sm-6 col-md-3">
             <div className="p-3 border border-2 border-dark rounded-2 h-100">
-              <img src={amenitiesIcon} alt="Amenities" style={{ width: '40px', height: '40px' }} className="mb-2" />
-              <div className="h4">3.5</div>
-              <small className="text-muted">Acre of Amenities</small>
+              <img src={amenitiesIcon} alt="Clubhouse" style={{ width: '40px', height: '40px' }} className="mb-2" />
+              <div className="h4">1.5</div>
+              <small className="text-muted">Acre Clubhouse</small>
             </div>
           </div>
         </div>

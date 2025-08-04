@@ -24,90 +24,45 @@ const LocationHighlights = () => {
       <Container>
         <h2 className="fw-bold mb-4 text-center">LOCATION HIGHLIGHTS</h2>
         <p className="text-muted text-center mb-5" style={{ fontSize: '1.25rem' }}>
-          When it comes to land, location is everything. Urbanrise Galleria Gardens is a community of premium villa plots in Shadnagar, one of Hyderabad's fastest-growing hubs.
+          When it comes to land, location is everything. Saffron Valley is a premium luxury villa community located at Masaipet @ Toopran, one of the fastest-growing neighbourhoods near Hyderabad.
         </p>
 
         <Row className="g-4 align-items-start">
           {/* Accordion Section */}
           <Col xs={12} md={6}>
             <Accordion defaultActiveKey="0">
-              {[
-                {
-                  key: '0',
-                  title: 'Major Land Marks',
-                  items: [
-                    ['Wipro', '30 MIN'],
-                    ['Electronic City', '30 MIN'],
-                    ['Financial District', '48 MIN'],
-                    ['Gachibowli', '50 MIN'],
-                    ['Adibatla', '50 MIN'],
-                  ],
-                },
-                {
-                  key: '1',
-                  title: 'Education',
-                  items: [
-                    ['Delhi World School Shadnagar', '20 MIN'],
-                    ['Oxford High School Shadnagar', '20 MIN'],
-                    ['Vivekananda Degree College, Shadnagar', '20 MIN'],
-                    ['NMIMS, Jadcherla', '20 MIN'],
-                    ['Symbiosys University, Kothur', '30 MIN'],
-                  ],
-                },
-                {
-                  key: '2',
-                  title: 'Hospitals',
-                  items: [
-                    ['Kritika Hospitals, Shadnagar', '30 MIN'],
-                    ['Vijayajyothi Multi specialty Hospital, Shadnagar', '30 MIN'],
-                    ['ABV Multi Speciality Hospital, Shadnagar', '48 MIN'],
-                  ],
-                },
-                {
-                  key: '3',
-                  title: 'Connectivity',
-                  items: [
-                    ['Proposed Regional Ring Road', '30 MIN'],
-                    ['Shamshabad Airport', '30 MIN'],
-                    ['Outer Ring Road', '48 MIN'],
-                  ],
-                },
-                {
-                  key: '4',
-                  title: 'Weekend Gateways',
-                  items: [
-                    ['Statue of Equality', '30 MIN'],
-                    ['Kanha Shanti Vanam - World Peace Centre', '30 MIN'],
-                    ['Wonderla', '48 MIN'],
-                    ['JP Dargah', '50 MIN'],
-                  ],
-                },
-              ].map(({ key, title, items }) => (
-                <Accordion.Item eventKey={key} key={key}>
-                  <Accordion.Header>{title}</Accordion.Header>
-                  <Accordion.Body>
-                    <ul className="list-unstyled mb-0">
-                      {items.map(([name, time], i) => (
-                        <li key={i} className="d-flex justify-content-between py-1">
-                          <span>{name}</span>
-                          <span className="text-success fw-semibold">{time}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </Accordion.Body>
-                </Accordion.Item>
-              ))}
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Major Landmarks</Accordion.Header>
+                <Accordion.Body>
+                  <ul className="list-unstyled mb-0">
+                    {[
+                      ['Haldi Reservoir', '1 KM'],
+                      ['NH44', '2 KM'],
+                      ['Regional Ring Road (RRR)', '3 KM'],
+                      ['Toopran', '8 KM'],
+                      ['Outer Ring Road (ORR)', '30 KM'],
+                      ['Kompally', '45 KM'],
+                    ].map(([place, distance], i) => (
+                      <li key={i} className="d-flex justify-content-between py-1">
+                        <span>{place}</span>
+                        <span className="text-success fw-semibold">{distance}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Accordion.Body>
+              </Accordion.Item>
             </Accordion>
+            <div className="mt-3 d-flex justify-content-center justify-content-md-center">
+              <Button variant="success" className="px-4 py-2" onClick={() => setShowModal(true)}>
+                ENQUIRE NOW
+              </Button>
+            </div>
           </Col>
 
           {/* Map & Enquiry Button */}
           <Col xs={12} md={6}>
             <img src={mapImage} alt="map" className="img-fluid rounded shadow-sm w-100" />
-            <div className="mt-3 d-flex justify-content-center justify-content-md-start">
-              <Button variant="success" className="px-4 py-2" onClick={() => setShowModal(true)}>
-                ENQUIRE NOW
-              </Button>
-            </div>
+            
           </Col>
         </Row>
       </Container>

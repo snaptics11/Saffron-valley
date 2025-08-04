@@ -6,7 +6,7 @@ function Top_bar() {
             <header className="bg-dark text-light text-center py-3">
                 <div className="container d-flex flex-column flex-md-row justify-content-md-between align-items-center">
                     <div className="email mb-2 mb-md-0"> 
-                        Email ID: info@myelegantgroup.com
+                        Email ID:  rvinfradevelopers2018@gmail.com
                     </div>
                     <div className="social">
                         Follow Us:
