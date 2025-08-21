@@ -1,5 +1,5 @@
 .footer {
-    background: linear-gradient(to right, #529644, #059448); 
+    background: linear-gradient(to right, #4a6572, #3498db); 
     color: white;
 }
 
@@ -30,11 +30,11 @@
 }
 
 .social-icons a:hover {
-    color: #059448;
+    color: #007bff;
 }
 
 .footer hr {
-    border-color: #059448;
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .img-fluid {

@@ -14,17 +14,17 @@ const Why = () => {
               <img
                 src={Savings}
                 className="img-fluid rounded shadow"
-                alt="Investment Opportunity"
+                alt="Saffron Valley"
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
             </Col>
 
             {/* Text Column */}
             <Col xs={12} md={6}>
-              <h2 className="fw-bold mb-4">WHY SAFFRON VALLEY?</h2>
+              <h2 className="fw-bold mb-2">WHY SAFFRON VALLEY?</h2>
+              <h5 className="mb-4 text-muted">A Premium Luxury Villa Community</h5>
               <ul className="list-unstyled">
                 {[
-                  'A Premium Luxury Villa Community',
                   'Safe, Secure & Fully Gated with 24/7 Digital Security',
                   'Located in Fast-Growing Masaipet @ Toopran',
                   'Excellent Connectivity: 1 km from Haldi Reservoir & 2 km from NH44',
@@ -33,7 +33,15 @@ const Why = () => {
                   '3 Villa Types: Kerala-inspired Ground Floor Farm Villas & European-inspired Duplex Villas (East & West)',
                 ].map((item, index) => (
                   <li key={index} className="mb-3 d-flex align-items-start">
-                    <FaCheckCircle style={{ color: '#059448', marginRight: '10px', marginTop: '4px' }} />
+                    <FaCheckCircle
+                      size={20} // fixed icon size for consistency
+                      style={{
+                        color: '#008000', // green color
+                        flexShrink: 0, // prevent shrinking
+                        marginRight: '10px',
+                        marginTop: '2px'
+                      }}
+                    />
                     <span>{item}</span>
                   </li>
                 ))}

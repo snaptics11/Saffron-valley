@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import brochureFile from "../../assets/Galleria-Gardens-brochure.pdf";
+import { useNavigate } from "react-router-dom";
+import "./form.css";
 
 function Form() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     mobile: "",
     plotRange: "",
     agree: false,
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -20,49 +22,69 @@ function Form() {
     }));
   };
 
+  const validateMobile = (mobile) => /^\d{10}$/.test(mobile);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateMobile(formData.mobile)) {
+      setSubmissionError("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmissionError("");
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const data = new FormData();
+      data.append("name", formData.name);
+      data.append("mobile", formData.mobile);
+      data.append("plotRange", formData.plotRange);
 
-      console.log("Form Data:", formData);
-      const link = document.createElement("a");
-      link.href = brochureFile;
-      link.download = "Urbanrise_Brochure.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const isLocalhost = window.location.hostname === "localhost";
+      const apiUrl = isLocalhost
+        ? "http://localhost/Elegant-group/htdocs/backend/send-email.php"
+        : "https://myelegantgroup.com/landing/send-email.php";
 
-      setFormData({
-        name: "",
-        email: "",
-        mobile: "",
-        plotRange: "",
-        agree: false,
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        body: data,
       });
+
+      const result = await response.text();
+
+      if (result.trim() === "success") {
+        setFormData({ name: "", mobile: "", plotRange: "", agree: false });
+        window.scrollTo(0, 0);
+        navigate("/thank-you");
+      } else {
+        setSubmissionError("Email failed. Please try again.");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
-      setSubmissionError(
-        "Failed to process your request. Please try again later."
-      );
+      setSubmissionError("Submission failed. Try again later.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="py-5 px-3" style={{ backgroundColor: "#b2ffa7cf" }}>
+    <section
+      className="form-section py-5 px-3"
+      style={{ backgroundColor: "lightgray" }}
+    >
       <div className="container">
         <div className="row g-5 align-items-center">
-          {/* Form Column */}
-          <div className="col-12 col-md-6 col-lg-5">
-            <div className="bg-light px-4 px-md-5 py-5 rounded shadow">
-              <h2 className="mb-4 text-center">Download Brochure</h2>
+          {/* Left Form Section */}
+          <div className="col-12 col-md-6">
+            <div className="p-4 rounded shadow bg-white">
+              <h2 className="mb-4 text-center text-uppercase fw-bold">
+                Download Brochure
+              </h2>
+
               <form onSubmit={handleSubmit}>
-                <div className="mb-4">
+                {/* Name Input */}
+                <div className="mb-3">
                   <label htmlFor="name" className="form-label">
                     Name*
                   </label>
@@ -76,7 +98,8 @@ function Form() {
                     required
                   />
                 </div>
-                <div className="mb-4">
+                {/* Email Input */}
+                <div className="mb-3">
                   <label htmlFor="email" className="form-label">
                     Email ID*
                   </label>
@@ -88,9 +111,12 @@ function Form() {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    placeholder="Enter your email address"
                   />
                 </div>
-                <div className="mb-4">
+
+                {/* Mobile Input */}
+                <div className="mb-3">
                   <label htmlFor="mobile" className="form-label">
                     Mobile Number*
                   </label>
@@ -102,9 +128,14 @@ function Form() {
                     value={formData.mobile}
                     onChange={handleChange}
                     required
+                    maxLength="10"
+                    pattern="\d{10}"
+                    placeholder="Enter 10-digit number"
                   />
                 </div>
-                <div className="mb-4">
+
+                {/* Plot Range */}
+                <div className="mb-3">
                   <label htmlFor="plotRange" className="form-label">
                     Select Your Villa Type
                   </label>
@@ -116,12 +147,20 @@ function Form() {
                     onChange={handleChange}
                   >
                     <option value="">Select Your Villa Type</option>
-                    <option value="G + 1 Villa (East)">G + 1 Villa (East)</option>
-                    <option value="G + 1 Villa (West)">G + 1 Villa (West)</option>
-                    <option value="Ground Floor Farm Villa (East & West)">Ground Floor Farm Villa (East & West)</option>
+                    <option value="G + 1 Villa (East)">
+                      G + 1 Villa (East)
+                    </option>
+                    <option value="G + 1 Villa (West)">
+                      G + 1 Villa (West)
+                    </option>
+                    <option value="Ground Floor Farm Villa (East & West)">
+                      Ground Floor Farm Villa (East & West)
+                    </option>
                   </select>
                 </div>
-                <div className="mb-4 form-check">
+
+                {/* Agreement Checkbox */}
+                <div className="mb-3 form-check">
                   <input
                     type="checkbox"
                     className="form-check-input"
@@ -135,43 +174,48 @@ function Form() {
                     I agree and authorize the team to contact me. This will override the registry with DNC / NDNC.
                   </label>
                 </div>
+
+                {/* Messages */}
                 {submissionError && (
                   <div className="alert alert-danger">{submissionError}</div>
                 )}
+
+                {/* Submit Button */}
                 <button
                   type="submit"
                   className="btn btn-outline-success w-100"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Submitting..." : "Submit"}
+                  {isSubmitting ? "Submitting..." : "Submit & Download"}
                 </button>
               </form>
             </div>
           </div>
 
-          {/* Description Column */}
-          <div className="col-12 col-md-6 col-lg-6 offset-lg-1">
-            <div className="pt-3 pt-md-0">
+          {/* Right Content Section */}
+          <div className="col-12 col-md-6">
+            <div className="ps-md-4">
               <h2
                 className="text-uppercase fw-bold mb-4"
-                style={{ color: "#000" }}
+                style={{ fontSize: "1.5rem" }}
               >
                 Live Your Luxury Resort Life, Everyday
               </h2>
-              <p style={{ fontSize: "18px" }}>
-                Saffron Valley is a premium gated villa community at Masaipet,
-                Toopran — a fast-growing neighbourhood near Hyderabad. Spread
-                across 18 acres, the project offers 76 ready luxury villas
+              <p>
+                <strong>Saffron Valley</strong> is a premium gated villa
+                community at Masaipet, Toopran — a fast-growing neighbourhood
+                near Hyderabad. Spread across <strong>18 acres</strong>, the
+                project offers <strong> 76 ready luxury villas </strong>{" "}
                 designed for nature-inspired living with world-class amenities.
-                Located just 1 km from Haldi Reservoir and 2 km from NH44,
-                Saffron Valley combines excellent connectivity with unmatched
-                serenity.
+                Located just <strong> 1 km from Haldi Reservoir</strong>
+                and <strong> 2 km from NH44</strong>, Saffron Valley combines
+                excellent connectivity with unmatched serenity.
               </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

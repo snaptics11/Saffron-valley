@@ -1,87 +1,87 @@
-import React from 'react';
-import villaPlotImage from '../../assets/gallery4.jpg';
-import treeIcon from '../../assets/tree-icon.png';
-import locationIcon from '../../assets/location-icon.png';
-import builderIcon from '../../assets/builder-icon.png';
-import landIcon from '../../assets/land-icon.png';
-import plotIcon from '../../assets/plot-icon.png';
-import areaIcon from '../../assets/area-icon.png';
-import amenitiesIcon from '../../assets/amenities-icon.png';
+import React from "react";
+import "./About.css";
+import construtionIcon from "../../assets/constrution-icon.png";
+import tickIcon from "../../assets/tick.png";
+import treeIcon from "../../assets/tree-icon.png";
+import landIcon from "../../assets/land-icon.png";
+import plotIcon from "../../assets/plot-icon.png";
+import areaIcon from "../../assets/area-icon.png";
+import amenitiesIcon from "../../assets/amenities-icon.png";
+import villaPlotImage from "../../assets/gallery4.jpg";
 
 function About() {
+  const features = [
+    { icon: treeIcon, text: "A Lifestyle Beyond Ordinary" },
+    { icon: tickIcon, text: "A Well-Connected Location" },
+    { icon: construtionIcon,text: "From a Trusted Real Estate Developer",},
+  ];
+
+  const stats = [
+    { icon: landIcon, label: "Acres", value: "18" },
+    { icon: plotIcon, label: "Villas", value: "76" },
+    { icon: areaIcon, label: "Sq. yds", value: "605" },
+    { icon: amenitiesIcon, label: "Acre Clubhouse & Amenities", value: "1.5" },
+  ];
+
   return (
-    <div id="About project">
-      <div className="px-3 px-sm-4 px-md-5 py-5" style={{ backgroundColor: '#d0e9fda5' }}>
-        {/* Top Section */}
-        <div className="row align-items-center gy-4">
-          {/* Text Content */}
+    <section id="About project" className="about-section">
+      <div className="text-center mb-4">
+        <h1 className="about-heading">
+          VILLAS THAT DEFINE{" "}
+          <span className="text-success">Luxury &amp; SERENITY</span>
+        </h1>
+        <p className="about-text">
+          <strong>
+            Ready Luxury Villas for Sale in Masaipet, Toopran – Saffron Valley
+          </strong>
+          <br />
+          <br />
+          Saffron Valley offers ready luxury villas in a premium gated community
+          at Masaipet, Toopran. Surrounded by lush greenery and waterbodies,
+          <br />
+          it is designed for those who seek peace, privacy, and world-class
+          amenities just minutes from the city.
+        </p>
+      </div>
+
+      <div className="container">
+        <div className="row align-items-center gy-5">
+          {/* Features List */}
           <div className="col-12 col-md-6">
-            <h1 className="fw-bold text-dark text-uppercase">Villas That Define Luxury and Serenity</h1>
-            <p className="mt-4">
-              Saffron Valley offers ready luxury villas in a premium gated community at Masaipet, Toopran.
-              Surrounded by lush greenery and waterbodies, it is designed for those who seek peace, privacy,
-              and world-class amenities just minutes from the city.
-            </p>
-            <ul className="list-unstyled mt-4">
-              <li className="d-flex align-items-center mb-3">
-                <img src={treeIcon} alt="Lifestyle Opportunity" className="me-3" style={{ width: '40px', height: '40px' }} />
-                <span>A Lifestyle Beyond Ordinary</span>
-              </li>
-              <li className="d-flex align-items-center mb-3">
-                <img src={locationIcon} alt="Well Connected Location" className="me-3" style={{ width: '40px', height: '40px' }} />
-                <span>A Well-Connected Location</span>
-              </li>
-              <li className="d-flex align-items-center mb-3">
-                <img src={builderIcon} alt="Trusted Developer" className="me-3" style={{ width: '40px', height: '40px' }} />
-                <span>From a Trusted Real Estate Developer</span>
-              </li>
+            <ul className="feature-list list-unstyled">
+              {features.map((item, idx) => (
+                <li key={idx}>
+                  <img src={item.icon} alt="Feature Icon" />
+                  <span className="feature-text">{item.text}</span><br/><br/>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Image */}
-          <div className="col-12 col-md-6 text-center">
+          <div className="col-12 col-md-6 text-center d-flex align-items-center justify-content-center">
             <img
               src={villaPlotImage}
-              alt="Saffron Valley View"
-              className="img-fluid rounded shadow"
-              style={{ maxHeight: '400px', objectFit: 'cover', width: '100%' }}
+              alt="Villa Plot Aerial View"
+              className="about-image"
             />
           </div>
         </div>
 
-        {/* Statistics Section */}
-        <div className="row mt-5 g-4 justify-content-center text-center">
-          <div className="col-6 col-sm-6 col-md-3">
-            <div className="p-3 border border-2 border-dark rounded-2 h-100">
-              <img src={landIcon} alt="Acres" style={{ width: '40px', height: '40px' }} className="mb-2" />
-              <div className="h4">18</div>
-              <small className="text-muted">Acres</small>
+        {/* Stats Section */}
+        <div className="row stats-container g-4 justify-content-center text-center mt-3">
+          {stats.map((stat, idx) => (
+            <div key={idx} className="col-6 col-sm-6 col-md-3">
+              <div className="stats-box bg-white">
+                <img src={stat.icon} alt={stat.label} />
+                <div className="stats-number">{stat.value}</div>
+                <div className="stats-label">{stat.label}</div>
+              </div>
             </div>
-          </div>
-          <div className="col-6 col-sm-6 col-md-3">
-            <div className="p-3 border border-2 border-dark rounded-2 h-100">
-              <img src={plotIcon} alt="Villas" style={{ width: '40px', height: '40px' }} className="mb-2" />
-              <div className="h4">76</div>
-              <small className="text-muted">Villas</small>
-            </div>
-          </div>
-          <div className="col-6 col-sm-6 col-md-3">
-            <div className="p-3 border border-2 border-dark rounded-2 h-100">
-              <img src={areaIcon} alt="Sq. yds" style={{ width: '40px', height: '40px' }} className="mb-2" />
-              <div className="h4">605</div>
-              <small className="text-muted">Sq. yds. Each</small>
-            </div>
-          </div>
-          <div className="col-6 col-sm-6 col-md-3">
-            <div className="p-3 border border-2 border-dark rounded-2 h-100">
-              <img src={amenitiesIcon} alt="Clubhouse" style={{ width: '40px', height: '40px' }} className="mb-2" />
-              <div className="h4">1.5</div>
-              <small className="text-muted">Acre Clubhouse</small>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

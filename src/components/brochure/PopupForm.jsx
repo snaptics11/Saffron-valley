@@ -1,36 +1,96 @@
-import { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
-import './Brochure.css';
+import { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import brochureFile from "../../assets/Saffron_Brochure_2025.pdf";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import "./Brochure.css";
+
+const initialForm = {
+  name: "",
+  mobile: "",
+  plotRange: "",
+  agree: false,
+};
 
 const PopupForm = ({ show, handleClose }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    plotRange: '',
-    agree: false,
-  });
+  const [formData, setFormData] = useState(initialForm);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-
-    const link = document.createElement('a');
-    link.href = '../../assets/Galleria-Gardens-brochure.pdf';
-    link.download = 'Urbanrise-Brochure.pdf';
-    link.click();
+  const handleModalClose = () => {
+    setFormData(initialForm);
     handleClose();
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.mobile || !formData.plotRange || !formData.agree) {
+      alert("Please fill out all fields and accept terms.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const isLocal = window.location.hostname === "localhost";
+      const url = isLocal
+        ? "http://localhost/Elegant-group/htdocs/backend/send-email.php"
+        : "https://myelegantgroup.com/landing/send-email.php";
+
+      const formBody = new URLSearchParams({
+        name: formData.name,
+        mobile: formData.mobile,
+        plotRange: formData.plotRange,
+      });
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formBody,
+      });
+
+      const result = await response.text();
+
+      if (result.trim().toLowerCase() === "success") {
+        alert("Form submitted successfully! Your brochure is downloading...");
+
+        // Trigger brochure download
+        const link = document.createElement("a");
+        link.href = brochureFile;
+        link.download = "Saffron_Brochure_2025.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // ✅ Navigate to thank-you page
+        navigate("/thank-you");
+
+        // Reset form and close modal
+        handleModalClose?.();
+        setFormData(initialForm);
+      } else {
+        alert("Submission failed: " + result);
+      }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("Something went wrong. Please check your internet or try again.");
+    }
+
+    setIsSubmitting(false);
+  };
+
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Book a Free Site Visit</Modal.Title>
+        <Modal.Title>Download Brochure</Modal.Title>
       </Modal.Header>
       <Form onSubmit={handleSubmit}>
         <Modal.Body>
@@ -45,31 +105,36 @@ const PopupForm = ({ show, handleClose }) => {
               placeholder="Enter your name"
             />
           </Form.Group>
+          <Form.Group className="mb-3">
+  <Form.Label>Email ID</Form.Label>
+  <Form.Control
+    type="email"
+    name="email"
+    required
+    value={formData.email}
+    onChange={handleChange}
+    placeholder="Enter your email address"
+  />
+  <Form.Text className="text-muted">
+    We'll never share your email with anyone else.
+  </Form.Text>
+</Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter email"
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Phone</Form.Label>
+            <Form.Label>Mobile Number</Form.Label>
             <Form.Control
               type="tel"
-              name="phone"
+              name="mobile"
               required
-              value={formData.phone}
+              pattern="[0-9]{10}"
+              value={formData.mobile}
               onChange={handleChange}
-              placeholder="Enter phone number"
+              placeholder="Enter 10-digit number"
             />
+            <Form.Text className="text-muted">
+              Numbers only, no country code.
+            </Form.Text>
           </Form.Group>
-
           <Form.Group className="mb-3">
             <Form.Label>Select Your Plot Range</Form.Label>
             <Form.Select
@@ -79,12 +144,11 @@ const PopupForm = ({ show, handleClose }) => {
               required
             >
               <option value="">Select Range</option>
-              <option value="range1">165 - 200 Sq. Yds</option>
-              <option value="range2">200 - 300 Sq. Yds</option>
-              <option value="range3">300 - 400 Sq. Yds</option>
+              <option value="165 - 200 Sq. Yds">165 - 200 Sq. Yds</option>
+              <option value="200 - 300 Sq. Yds">200 - 300 Sq. Yds</option>
+              <option value="300 - 400 Sq. Yds">300 - 400 Sq. Yds</option>
             </Form.Select>
           </Form.Group>
-
           <Form.Group className="mb-3 form-check">
             <Form.Check
               type="checkbox"
@@ -97,16 +161,18 @@ const PopupForm = ({ show, handleClose }) => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="success" type="submit">
-            Download Brochure
+          <Button variant="success" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Submitting..." : "Download Brochure"}
           </Button>
         </Modal.Footer>
       </Form>
     </Modal>
   );
+};
+
+PopupForm.propTypes = {
+  show: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default PopupForm;

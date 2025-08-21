@@ -1,5 +1,5 @@
 .location-section {
-  background: #fff;
+  background: #ffffff;
   padding: 3rem 1rem; /* Adds spacing for small screens */
 }
 
@@ -35,7 +35,7 @@
   font-weight: bold;
   border-radius: 8px;
   color: white;
-  background-color: #0d6efd; /* Bootstrap primary */
+  background-color: #0d6efd; /* Bootstrap  success */
   transition: all 0.3s ease;
 }
 

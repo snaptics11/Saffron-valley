@@ -1,9 +1,9 @@
 import "./Header.css";
-import backgroundImage from "../../assets/background1.jpg";
+import backgroundImage from "../../assets/1_00001.jpg";
 
 function Header() {
   return (
-    <div
+    <section
       id="Home"
       className="head-section"
       style={{
@@ -12,23 +12,25 @@ function Header() {
         backgroundPosition: "center",
         minHeight: "100vh",
         display: "flex",
-        alignItems: "center",
         justifyContent: "flex-start",
+        alignItems: "center",
         padding: "20px",
       }}
     >
       <div className="content-box">
-        <h1>Luxury Resort-Style Villas @ Masaipet, Toopran</h1>
-        <p>
-          1 km from Haldi Reservoir | 18-Acre Gated Community with World-Class
-          Amenities
+        <h1 className="headline">
+          Luxury Resort-Style Villas @ Masaipet, Toopran
+        </h1>
+        <p className="subheadline">1 km from Haldi Reservoir</p>
+        <p className="subheadline1">
+          18-Acre Gated Community with World-Class Amenities
         </p>
-        <h3>
-          76 Villas | 605 sq. yds. Each | 1.5-Acre Clubhouse | Waterfront
-          Walking Trails
-        </h3>
+        <p className="details">
+          76 Villas &nbsp;|&nbsp; 605 sq. yds. Each &nbsp;|&nbsp; 1.5-Acre
+          Clubhouse &nbsp;|&nbsp; Waterfront Walking Trails
+        </p>
       </div>
-    </div>
+    </section>
   );
 }
 

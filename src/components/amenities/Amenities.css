@@ -1,29 +1,51 @@
 .amenities-section {
-    padding: 50px 0;
+    padding: 100px 0;
     background-color: #e7fbc9; 
 }
 
 .amenity-card {
     background-color: #f6f6f6; 
     border-radius: 15px;
-    padding: 30px;
+    padding: 40px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%; /* Make all equal height */
+    min-height: 200px; /* Ensures even small text cards match */
 }
 
 .amenity-card:hover {
-    transform: translateY(-15px);
+    transform: translateY(-10px);
 }
 
 .amenity-icon {
     width: 80px;
     height: 80px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
+    object-fit: cover;
 }
 
 .amenity-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: #333;
+    margin-top: auto; /* Push text to bottom for alignment */
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .amenity-card {
+        min-height: 180px;
+        padding: 20px;
+    }
+    .amenity-icon {
+        width: 70px;
+        height: 70px;
+    }
+    .amenity-title {
+        font-size: 1rem;
+    }
 }

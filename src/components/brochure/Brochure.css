@@ -1,10 +1,10 @@
 .side-button {
     position: fixed;
-    top: 40%;
+    top: 30%;
     right: 0;
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    background: linear-gradient(45deg, #059448);
+    background: linear-gradient(45deg, green);
     color: white;
     padding: 10px 8px;
     font-weight: bold;
